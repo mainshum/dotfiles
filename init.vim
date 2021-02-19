@@ -24,30 +24,13 @@ set smartindent
 
 call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'jiangmiao/auto-pairs'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-lua/completion-nvim'
-    Plug 'neovim/nvim-lspconfig' "common configs for a language server client
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 "plugin settings
-nnoremap <C-p> <cmd>Telescope find_files<cr>
+let mapleader = " "
 let g:AutoPairsShortcutToggle = ''
-set completeopt=menuone,noinsert,noselect
-set shortmess+=c
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-lua << EOF
-require('lspconfig').tsserver.setup{
-    on_attach=require('completion').on_attach
-}
+nnoremap <leader>ff <cmd>GFiles<cr>
 
-require('telescope').setup{
-    defaults = {
-        prompt_prefix = ">",
-        file_ignore_patterns = {"node_modules/.*"}
-    }
-}
-EOF
