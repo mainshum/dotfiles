@@ -1,6 +1,9 @@
 "general
+colorscheme inkpot
 set exrc 
 set guicursor=
+set ignorecase
+set smartcase
 "set relativenumber
 set nu "set number
 set nohlsearch
@@ -23,14 +26,20 @@ set expandtab
 set smartindent
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-    Plug 'jiangmiao/auto-pairs'
+    "Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
     Plug 'junegunn/fzf.vim'
+    Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 "plugin settings
 let mapleader = " "
-let g:AutoPairsShortcutToggle = ''
 
-nnoremap <leader>ff <cmd>GFiles<cr>
+" fzf setup
+lua << EOF
 
+EOF
+
+
+nnoremap <Leader>lf <cmd>GFiles<cr>
+nnoremap <Leader>lb <cmd>Buffers<cr>
